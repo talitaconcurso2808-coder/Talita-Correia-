@@ -44,11 +44,24 @@
             max-width: 400px;
         }
 
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--rosa-medio);
+        }
+
         .app-title {
             color: var(--rosa-profundo);
             font-size: 24px;
-            margin-bottom: 10px;
-            text-align: center;
+            margin-bottom: 5px;
         }
 
         .app-subtitle {
@@ -124,6 +137,20 @@
             align-items: center;
         }
 
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+
         .header h2 {
             font-size: 20px;
         }
@@ -157,6 +184,21 @@
             border-radius: 20px;
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(194, 24, 91, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .greeting-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        .greeting-text {
+            flex: 1;
         }
 
         .greeting-card h3 {
@@ -540,7 +582,8 @@
     <div id="loginPage" class="login-container">
         <div class="login-card">
             <div class="logo-section">
-                <h1 class="app-title">🌸 Talita Correia</h1>
+                <img src="Talita.logo.png" alt="Talita Correia Logo" class="logo" onerror="this.src='https://via.placeholder.com/120x120/C2185B/FFFFFF?text=TC'">
+                <h1 class="app-title">Talita Correia</h1>
                 <p class="app-subtitle">Seu assistente pessoal de organização</p>
             </div>
             
@@ -566,11 +609,12 @@
             <!-- Header -->
             <header class="header">
                 <div class="header-content">
-                    <h2 id="pageTitle">🌸 Talita Correia</h2>
-                    <div class="user-menu">
-                        <span>Talita</span>
-                        <div class="avatar">TC</div>
-                    </div>
+                    <img src="Talita.logo.png" alt="Talita Correia Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/50x50/C2185B/FFFFFF?text=TC'">
+                    <h2 id="pageTitle">Talita Correia</h2>
+                </div>
+                <div class="user-menu">
+                    <span>Talita</span>
+                    <div class="avatar">TC</div>
                 </div>
             </header>
 
@@ -579,8 +623,11 @@
                 <!-- Dashboard -->
                 <div id="dashboardPage" class="page active">
                     <div class="greeting-card">
-                        <h3>Bom dia, Talita! 🌸</h3>
-                        <p class="date" id="currentDate"></p>
+                        <img src="Talita.logo.png" alt="Talita Correia Logo" class="greeting-logo" onerror="this.src='https://via.placeholder.com/80x80/C2185B/FFFFFF?text=TC'">
+                        <div class="greeting-text">
+                            <h3>Bom dia, Talita! 👋</h3>
+                            <p class="date" id="currentDate"></p>
+                        </div>
                     </div>
 
                     <section class="dashboard-section">
@@ -986,7 +1033,7 @@
             
             // Atualizar título
             const titles = {
-                dashboardPage: '🌸 Talita Correia',
+                dashboardPage: 'Talita Correia',
                 agendaPage: '📅 Agenda',
                 disciplinasPage: '📚 Disciplinas',
                 tarefasPage: '✅ Tarefas',
@@ -1013,7 +1060,7 @@
                     <span class="agenda-title">${c.titulo}</span>
                     <span class="agenda-category">${c.categoria}</span>
                 </div>
-            `).join('') : '<p class="empty-message">Nenhum compromisso para hoje 🌸</p>';
+            `).join('') : '<p class="empty-message">Nenhum compromisso para hoje 👋</p>';
             document.getElementById('todayAgenda').innerHTML = agendaHtml;
 
             // Tarefas pendentes
@@ -1359,4 +1406,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
