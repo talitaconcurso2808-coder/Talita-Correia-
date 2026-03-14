@@ -50,12 +50,13 @@
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             margin-bottom: 15px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--rosa-medio);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .app-title {
@@ -129,7 +130,7 @@
         .header {
             background: linear-gradient(135deg, var(--rosa-profundo), var(--rosa-medio));
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
             border-radius: 20px;
             margin-bottom: 20px;
             display: flex;
@@ -144,11 +145,12 @@
         }
 
         .header-logo {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .header h2 {
@@ -180,7 +182,7 @@
         .greeting-card {
             background: linear-gradient(135deg, var(--rosa-claro), var(--rosa-medio));
             color: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 20px;
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(194, 24, 91, 0.2);
@@ -190,11 +192,12 @@
         }
 
         .greeting-logo {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .greeting-text {
@@ -202,7 +205,7 @@
         }
 
         .greeting-card h3 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 5px;
         }
 
@@ -574,6 +577,11 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            
+            .greeting-card {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -582,7 +590,11 @@
     <div id="loginPage" class="login-container">
         <div class="login-card">
             <div class="logo-section">
-                <img src="Talita.logo.png" alt="Talita Correia Logo" class="logo" onerror="this.src='https://via.placeholder.com/120x120/C2185B/FFFFFF?text=TC'">
+                <!-- Imagem do GitHub -->
+                <img src="https://raw.githubusercontent.com/[SEU-USUARIO]/[NOME-DO-REPOSITORIO]/main/Talita.logo.png" 
+                     alt="Talita Correia Logo" 
+                     class="logo"
+                     onerror="this.src='https://via.placeholder.com/150x150/C2185B/FFFFFF?text=TC'">
                 <h1 class="app-title">Talita Correia</h1>
                 <p class="app-subtitle">Seu assistente pessoal de organização</p>
             </div>
@@ -609,7 +621,11 @@
             <!-- Header -->
             <header class="header">
                 <div class="header-content">
-                    <img src="Talita.logo.png" alt="Talita Correia Logo" class="header-logo" onerror="this.src='https://via.placeholder.com/50x50/C2185B/FFFFFF?text=TC'">
+                    <!-- Imagem do GitHub no header -->
+                    <img src="https://raw.githubusercontent.com/[SEU-USUARIO]/[NOME-DO-REPOSITORIO]/main/Talita.logo.png" 
+                         alt="Talita Correia Logo" 
+                         class="header-logo"
+                         onerror="this.src='https://via.placeholder.com/45x45/C2185B/FFFFFF?text=TC'">
                     <h2 id="pageTitle">Talita Correia</h2>
                 </div>
                 <div class="user-menu">
@@ -623,7 +639,11 @@
                 <!-- Dashboard -->
                 <div id="dashboardPage" class="page active">
                     <div class="greeting-card">
-                        <img src="Talita.logo.png" alt="Talita Correia Logo" class="greeting-logo" onerror="this.src='https://via.placeholder.com/80x80/C2185B/FFFFFF?text=TC'">
+                        <!-- Imagem do GitHub no greeting -->
+                        <img src="https://raw.githubusercontent.com/[SEU-USUARIO]/[NOME-DO-REPOSITORIO]/main/Talita.logo.png" 
+                             alt="Talita Correia Logo" 
+                             class="greeting-logo"
+                             onerror="this.src='https://via.placeholder.com/70x70/C2185B/FFFFFF?text=TC'">
                         <div class="greeting-text">
                             <h3>Bom dia, Talita! 👋</h3>
                             <p class="date" id="currentDate"></p>
@@ -778,7 +798,7 @@
         </div>
     </div>
 
-    <!-- Modais -->
+    <!-- Modais (mantidos iguais) -->
     <!-- Modal Compromisso -->
     <div id="modalCompromisso" class="modal">
         <div class="modal-content">
