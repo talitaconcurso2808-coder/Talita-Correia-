@@ -18,6 +18,7 @@
             --branco-suave: #F5F5F5;
             --cinza-escuro: #424242;
             --cinza-claro: #E0E0E0;
+            --dourado: #C5A028;
         }
 
         body {
@@ -50,7 +51,7 @@
         }
 
         .logo {
-            width: 220px; /* Aumentado */
+            width: 220px;
             height: auto;
             margin-bottom: 20px;
             display: inline-block;
@@ -135,10 +136,22 @@
             gap: 15px;
         }
 
-        .header-logo {
-            height: 45px; /* Aumentado */
-            width: auto;
-            filter: brightness(0) invert(1);
+        .justice-icon {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--rosa-profundo);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .justice-icon:hover {
+            transform: scale(1.05);
         }
 
         .header h2 {
@@ -154,8 +167,8 @@
         }
 
         .profile-photo {
-            width: 45px; /* Aumentado */
-            height: 45px; /* Aumentado */
+            width: 45px;
+            height: 45px;
             background-color: white;
             color: var(--rosa-profundo);
             border-radius: 50%;
@@ -168,6 +181,11 @@
             background-position: center;
             background-repeat: no-repeat;
             border: 2px solid white;
+            transition: transform 0.3s;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
         }
 
         /* Menu de perfil dropdown */
@@ -232,7 +250,7 @@
         }
 
         .greeting-logo {
-            height: 70px; /* Aumentado */
+            height: 70px;
             width: auto;
             background: white;
             padding: 10px;
@@ -654,6 +672,73 @@
             cursor: pointer;
         }
 
+        /* Estilos para o resumo financeiro */
+        .financial-report {
+            background: linear-gradient(135deg, var(--rosa-profundo), var(--rosa-medio));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .report-header h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .report-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .report-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .report-item {
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .report-label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .report-value {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .generate-report-btn {
+            background-color: white;
+            color: var(--rosa-profundo);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .generate-report-btn:hover {
+            transform: scale(1.02);
+        }
+
         @media (max-width: 768px) {
             .indicators-grid {
                 grid-template-columns: 1fr;
@@ -667,6 +752,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+            
+            .report-summary {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -675,7 +764,6 @@
     <div id="loginPage" class="login-container">
         <div class="login-card">
             <div class="logo-section">
-                <!-- LOGO PRINCIPAL (tamanho aumentado) -->
                 <img src="https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png" 
                      alt="Talita Correia Logo" 
                      class="logo">
@@ -704,14 +792,12 @@
             <!-- Header -->
             <header class="header">
                 <div class="header-content">
-                    <!-- LOGO NO HEADER (tamanho aumentado) -->
-                    <img src="https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png" 
-                         alt="Talita Correia" 
-                         class="header-logo">
+                    <!-- Ícone de Direito (balança da justiça) -->
+                    <div class="justice-icon">⚖️</div>
                     <h2 id="pageTitle">Talita Correia</h2>
                 </div>
                 <div class="user-menu" onclick="toggleProfileMenu()">
-                    <div id="profilePhoto" class="profile-photo" style="background-image: url('https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png'); background-size: cover; background-position: center;"></div>
+                    <div id="profilePhoto" class="profile-photo"></div>
                     
                     <!-- Menu dropdown do perfil -->
                     <div id="profileMenu" class="profile-menu">
@@ -736,12 +822,11 @@
                 <!-- Dashboard -->
                 <div id="dashboardPage" class="page active">
                     <div class="greeting-card">
-                        <!-- LOGO NO CUMPRIMENTO (tamanho aumentado) -->
                         <img src="https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png" 
                              alt="Talita Correia" 
                              class="greeting-logo">
                         <div class="greeting-text">
-                            <h3>Bom dia, Talita! 👋</h3>
+                            <h3 id="greetingMessage">Boa noite, Talita! 👋</h3>
                             <p class="date" id="currentDate"></p>
                         </div>
                     </div>
@@ -858,6 +943,32 @@
                         <button class="filter-btn" onclick="mostrarTransacoes('despesas')">Despesas</button>
                     </div>
                     <div id="transacoesList"></div>
+                    
+                    <!-- Resumo Financeiro -->
+                    <div class="financial-report" id="financialReport" style="display: none;">
+                        <div class="report-header">
+                            <h3>📊 Resumo Financeiro</h3>
+                            <p id="reportDate"></p>
+                        </div>
+                        <div class="report-summary">
+                            <div class="report-item">
+                                <span class="report-label">Saldo Atual</span>
+                                <span class="report-value" id="reportBalance">R$ 0,00</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-label">Total Entradas</span>
+                                <span class="report-value positive" id="reportIncome">R$ 0,00</span>
+                            </div>
+                            <div class="report-item">
+                                <span class="report-label">Total Saídas</span>
+                                <span class="report-value negative" id="reportExpenses">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="generate-report-btn" onclick="gerarResumoFinanceiro()">
+                        📊 Gerar Resumo Financeiro
+                    </button>
                 </div>
             </main>
 
@@ -1064,7 +1175,7 @@
                 <button class="close-btn" onclick="fecharModalFotoPerfil()">&times;</button>
             </div>
             <div class="photo-upload">
-                <div id="photoPreview" class="photo-preview" style="background-image: url('https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png');"></div>
+                <div id="photoPreview" class="photo-preview"></div>
                 <input type="file" id="photoInput" class="photo-input" accept="image/*" onchange="previewPhoto(event)">
                 <label for="photoInput" class="photo-label">Escolher foto</label>
                 <button class="btn-primary" onclick="salvarFotoPerfil()">Salvar foto</button>
@@ -1085,30 +1196,80 @@
                 { id: 2, nome: 'Direito Civil', professor: 'Dra. Maria Santos', semestre: '5º' }
             ],
             tarefas: [
-                { id: 1, titulo: 'Estudar Direito Civil', categoria: 'Estudos', dataLimite: '2026-03-15', status: 'pendente' },
-                { id: 2, titulo: 'Enviar relatório do estágio', categoria: 'Estágio', dataLimite: '2026-03-14', status: 'pendente' }
+                { id: 1, titulo: 'Estudar Direito Civil', categoria: 'Estudos', dataLimite: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0], status: 'pendente' },
+                { id: 2, titulo: 'Enviar relatório do estágio', categoria: 'Estágio', dataLimite: new Date().toISOString().split('T')[0], status: 'pendente' }
             ],
             receitas: [
-                { id: 1, valor: 1200, categoria: 'Estágio', data: '2026-03-10', descricao: 'Bolsa estágio' },
-                { id: 2, valor: 1600, categoria: 'Salário', data: '2026-03-05', descricao: 'Salário mensal' }
+                { id: 1, valor: 1200, categoria: 'Estágio', data: new Date(new Date().setDate(new Date().getDate() - 5)).toISOString().split('T')[0], descricao: 'Bolsa estágio' },
+                { id: 2, valor: 1600, categoria: 'Salário', data: new Date(new Date().setDate(new Date().getDate() - 10)).toISOString().split('T')[0], descricao: 'Salário mensal' }
             ],
             despesas: [
-                { id: 1, valor: 45, categoria: 'Transporte', data: '2026-03-14', descricao: 'Uber para faculdade' },
-                { id: 2, valor: 35, categoria: 'Alimentação', data: '2026-03-13', descricao: 'Almoço' }
+                { id: 1, valor: 45, categoria: 'Transporte', data: new Date().toISOString().split('T')[0], descricao: 'Uber para faculdade' },
+                { id: 2, valor: 35, categoria: 'Alimentação', data: new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split('T')[0], descricao: 'Almoço' }
             ],
-            profilePhoto: 'https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png'
+            profilePhoto: null
         };
+
+        // Carregar dados salvos
+        function carregarDadosSalvos() {
+            const savedData = localStorage.getItem('talitaApp');
+            if (savedData) {
+                const parsed = JSON.parse(savedData);
+                db = { ...db, ...parsed };
+            }
+            
+            // Foto de perfil padrão se não existir
+            if (!db.profilePhoto) {
+                db.profilePhoto = 'https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png';
+            }
+        }
+
+        // Salvar dados
+        function salvarDados() {
+            localStorage.setItem('talitaApp', JSON.stringify(db));
+        }
 
         // Variáveis de estado
         let filtroCompromissos = 'todos';
         let filtroTarefas = 'todas';
         let filtroTransacoes = 'todas';
 
+        // Carregar dados ao iniciar
+        carregarDadosSalvos();
+
+        // Função para obter data atual no formato ISO (YYYY-MM-DD) considerando horário de Brasília
+        function getDataAtualBrasilia() {
+            const now = new Date();
+            // Ajustar para horário de Brasília (UTC-3)
+            const brasiliaTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            return brasiliaTime.toISOString().split('T')[0];
+        }
+
+        // Função para obter saudação baseada no horário de Brasília
+        function getSaudacao() {
+            const now = new Date();
+            const brasiliaTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const horas = brasiliaTime.getHours();
+            
+            if (horas >= 5 && horas < 12) {
+                return 'Bom dia';
+            } else if (horas >= 12 && horas < 18) {
+                return 'Boa tarde';
+            } else {
+                return 'Boa noite';
+            }
+        }
+
         // Login
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('appMain').style.display = 'block';
+            
+            // Atualizar saudação
+            const saudacao = getSaudacao();
+            document.getElementById('greetingMessage').innerHTML = `${saudacao}, Talita! 👋`;
+            
             carregarDashboard();
             carregarCompromissos();
             carregarDisciplinas();
@@ -1116,7 +1277,7 @@
             carregarTransacoes();
             carregarFotoPerfil();
             
-            // Data atual
+            // Data atual formatada
             const hoje = new Date();
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('currentDate').textContent = hoje.toLocaleDateString('pt-BR', options);
@@ -1124,15 +1285,12 @@
 
         // Funções de navegação
         function showPage(pageId) {
-            // Esconde todas as páginas
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            // Mostra a página selecionada
             document.getElementById(pageId).classList.add('active');
             
-            // Atualiza menu ativo
             document.querySelectorAll('.nav-item').forEach((item, index) => {
                 item.classList.remove('active');
                 if ((pageId === 'dashboardPage' && index === 0) ||
@@ -1144,7 +1302,6 @@
                 }
             });
 
-            // Atualiza título da página
             const titles = {
                 dashboardPage: 'Talita Correia',
                 agendaPage: 'Agenda',
@@ -1154,7 +1311,6 @@
             };
             document.getElementById('pageTitle').textContent = titles[pageId];
 
-            // Recarrega dados conforme a página
             if (pageId === 'agendaPage') carregarCompromissos();
             if (pageId === 'disciplinasPage') carregarDisciplinas();
             if (pageId === 'tarefasPage') carregarTarefas();
@@ -1167,7 +1323,6 @@
             menu.classList.toggle('show');
         }
 
-        // Fechar menu ao clicar fora
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('profileMenu');
             const userMenu = document.querySelector('.user-menu');
@@ -1181,7 +1336,6 @@
             event.stopPropagation();
             document.getElementById('profileMenu').classList.remove('show');
             document.getElementById('modalFotoPerfil').classList.add('active');
-            // Atualiza preview com a foto atual
             document.getElementById('photoPreview').style.backgroundImage = `url('${db.profilePhoto}')`;
         }
 
@@ -1206,6 +1360,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     db.profilePhoto = e.target.result;
+                    salvarDados();
                     carregarFotoPerfil();
                     fecharModalFotoPerfil();
                 };
@@ -1241,7 +1396,7 @@
 
         // Funções do Dashboard
         function carregarDashboard() {
-            const hoje = new Date().toISOString().split('T')[0];
+            const hoje = getDataAtualBrasilia();
             
             // Agenda de hoje
             const compromissosHoje = db.compromissos.filter(c => c.data === hoje);
@@ -1275,13 +1430,19 @@
             }
 
             // Resumo financeiro
+            atualizarResumoFinanceiro();
+        }
+
+        function atualizarResumoFinanceiro() {
             const totalReceitas = db.receitas.reduce((sum, r) => sum + r.valor, 0);
             const totalDespesas = db.despesas.reduce((sum, d) => sum + d.valor, 0);
-            document.getElementById('currentBalance').textContent = `R$ ${(totalReceitas - totalDespesas).toFixed(2)}`;
+            const saldo = totalReceitas - totalDespesas;
+            
+            document.getElementById('currentBalance').textContent = `R$ ${saldo.toFixed(2)}`;
             document.getElementById('monthlyIncome').textContent = `R$ ${totalReceitas.toFixed(2)}`;
             document.getElementById('monthlyExpenses').textContent = `R$ ${totalDespesas.toFixed(2)}`;
 
-            // Indicadores
+            // Atualizar indicadores
             const tarefasConcluidas = db.tarefas.filter(t => t.status === 'concluida').length;
             document.getElementById('tasksCompleted').textContent = tarefasConcluidas;
             
@@ -1290,6 +1451,26 @@
             
             const gastosSemana = db.despesas.reduce((sum, d) => sum + d.valor, 0);
             document.getElementById('weekExpenses').textContent = `R$ ${gastosSemana.toFixed(2)}`;
+        }
+
+        // Função para gerar resumo financeiro
+        function gerarResumoFinanceiro() {
+            const totalReceitas = db.receitas.reduce((sum, r) => sum + r.valor, 0);
+            const totalDespesas = db.despesas.reduce((sum, d) => sum + d.valor, 0);
+            const saldo = totalReceitas - totalDespesas;
+            
+            document.getElementById('reportBalance').textContent = `R$ ${saldo.toFixed(2)}`;
+            document.getElementById('reportIncome').textContent = `R$ ${totalReceitas.toFixed(2)}`;
+            document.getElementById('reportExpenses').textContent = `R$ ${totalDespesas.toFixed(2)}`;
+            
+            const hoje = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('reportDate').textContent = hoje.toLocaleDateString('pt-BR', options);
+            
+            document.getElementById('financialReport').style.display = 'block';
+            
+            // Scroll suave até o resumo
+            document.getElementById('financialReport').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Funções de Compromissos
@@ -1301,7 +1482,6 @@
                 compromissosFiltrados = compromissosFiltrados.filter(c => c.categoria === filtroCompromissos);
             }
 
-            // Agrupar por data
             const compromissosPorData = {};
             compromissosFiltrados.forEach(c => {
                 if (!compromissosPorData[c.data]) {
@@ -1310,7 +1490,6 @@
                 compromissosPorData[c.data].push(c);
             });
 
-            // Ordenar datas
             const datasOrdenadas = Object.keys(compromissosPorData).sort();
 
             if (datasOrdenadas.length === 0) {
@@ -1343,7 +1522,6 @@
         function filtrarCompromissos(filtro) {
             filtroCompromissos = filtro;
             
-            // Atualiza botões ativos
             document.querySelectorAll('#agendaPage .filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -1353,7 +1531,7 @@
         }
 
         function abrirModalCompromisso() {
-            const hoje = new Date().toISOString().split('T')[0];
+            const hoje = getDataAtualBrasilia();
             document.getElementById('compromissoData').value = hoje;
             document.getElementById('modalCompromisso').classList.add('active');
         }
@@ -1377,6 +1555,7 @@
             };
 
             db.compromissos.push(novoCompromisso);
+            salvarDados();
             fecharModalCompromisso();
             carregarCompromissos();
             carregarDashboard();
@@ -1385,6 +1564,7 @@
         function excluirCompromisso(id) {
             if (confirm('Deseja realmente excluir este compromisso?')) {
                 db.compromissos = db.compromissos.filter(c => c.id !== id);
+                salvarDados();
                 carregarCompromissos();
                 carregarDashboard();
             }
@@ -1433,6 +1613,7 @@
             };
 
             db.disciplinas.push(novaDisciplina);
+            salvarDados();
             fecharModalDisciplina();
             carregarDisciplinas();
         }
@@ -1440,6 +1621,7 @@
         function excluirDisciplina(id) {
             if (confirm('Deseja realmente excluir esta disciplina?')) {
                 db.disciplinas = db.disciplinas.filter(d => d.id !== id);
+                salvarDados();
                 carregarDisciplinas();
             }
         }
@@ -1455,7 +1637,6 @@
                 tarefasFiltradas = tarefasFiltradas.filter(t => t.status === 'concluida');
             }
 
-            // Agrupar por data
             const tarefasPorData = {};
             tarefasFiltradas.forEach(t => {
                 if (!tarefasPorData[t.dataLimite]) {
@@ -1464,7 +1645,6 @@
                 tarefasPorData[t.dataLimite].push(t);
             });
 
-            // Ordenar datas
             const datasOrdenadas = Object.keys(tarefasPorData).sort();
 
             if (datasOrdenadas.length === 0) {
@@ -1501,7 +1681,6 @@
         function filtrarTarefas(filtro) {
             filtroTarefas = filtro;
             
-            // Atualiza botões ativos
             document.querySelectorAll('#tarefasPage .filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -1511,7 +1690,7 @@
         }
 
         function abrirModalTarefa() {
-            const hoje = new Date().toISOString().split('T')[0];
+            const hoje = getDataAtualBrasilia();
             document.getElementById('tarefaDataLimite').value = hoje;
             document.getElementById('modalTarefa').classList.add('active');
         }
@@ -1533,6 +1712,7 @@
             };
 
             db.tarefas.push(novaTarefa);
+            salvarDados();
             fecharModalTarefa();
             carregarTarefas();
             carregarDashboard();
@@ -1542,6 +1722,7 @@
             const tarefa = db.tarefas.find(t => t.id === id);
             if (tarefa) {
                 tarefa.status = 'concluida';
+                salvarDados();
                 carregarTarefas();
                 carregarDashboard();
             }
@@ -1550,6 +1731,7 @@
         function excluirTarefa(id) {
             if (confirm('Deseja realmente excluir esta tarefa?')) {
                 db.tarefas = db.tarefas.filter(t => t.id !== id);
+                salvarDados();
                 carregarTarefas();
                 carregarDashboard();
             }
@@ -1559,20 +1741,17 @@
         function carregarTransacoes() {
             const lista = document.getElementById('transacoesList');
             
-            // Combinar receitas e despesas
             let transacoes = [
                 ...db.receitas.map(r => ({ ...r, tipo: 'receita' })),
                 ...db.despesas.map(d => ({ ...d, tipo: 'despesa' }))
             ];
 
-            // Aplicar filtro
             if (filtroTransacoes === 'receitas') {
                 transacoes = transacoes.filter(t => t.tipo === 'receita');
             } else if (filtroTransacoes === 'despesas') {
                 transacoes = transacoes.filter(t => t.tipo === 'despesa');
             }
 
-            // Ordenar por data (mais recente primeiro)
             transacoes.sort((a, b) => new Date(b.data) - new Date(a.data));
 
             if (transacoes.length === 0) {
@@ -1580,7 +1759,6 @@
                 return;
             }
 
-            // Agrupar por data
             const transacoesPorData = {};
             transacoes.forEach(t => {
                 if (!transacoesPorData[t.data]) {
@@ -1617,13 +1795,12 @@
             lista.innerHTML = html;
 
             // Atualizar totais no dashboard
-            carregarDashboard();
+            atualizarResumoFinanceiro();
         }
 
         function mostrarTransacoes(filtro) {
             filtroTransacoes = filtro;
             
-            // Atualiza botões ativos
             document.querySelectorAll('#financasPage .filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -1633,7 +1810,7 @@
         }
 
         function abrirModalReceita() {
-            const hoje = new Date().toISOString().split('T')[0];
+            const hoje = getDataAtualBrasilia();
             document.getElementById('receitaData').value = hoje;
             document.getElementById('modalReceita').classList.add('active');
         }
@@ -1655,12 +1832,13 @@
             };
 
             db.receitas.push(novaReceita);
+            salvarDados();
             fecharModalReceita();
             carregarTransacoes();
         }
 
         function abrirModalDespesa() {
-            const hoje = new Date().toISOString().split('T')[0];
+            const hoje = getDataAtualBrasilia();
             document.getElementById('despesaData').value = hoje;
             document.getElementById('modalDespesa').classList.add('active');
         }
@@ -1682,6 +1860,7 @@
             };
 
             db.despesas.push(novaDespesa);
+            salvarDados();
             fecharModalDespesa();
             carregarTransacoes();
         }
@@ -1693,6 +1872,7 @@
                 } else {
                     db.despesas = db.despesas.filter(d => d.id !== id);
                 }
+                salvarDados();
                 carregarTransacoes();
             }
         }
