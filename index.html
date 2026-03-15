@@ -50,17 +50,10 @@
         }
 
         .logo {
-            width: 180px;
+            width: 220px; /* Aumentado */
             height: auto;
             margin-bottom: 20px;
             display: inline-block;
-        }
-
-        .app-title {
-            color: var(--rosa-profundo);
-            font-size: 24px;
-            margin-bottom: 5px;
-            display: none; /* Escondido porque o logo já tem o texto */
         }
 
         .app-subtitle {
@@ -143,9 +136,9 @@
         }
 
         .header-logo {
-            height: 40px;
+            height: 45px; /* Aumentado */
             width: auto;
-            filter: brightness(0) invert(1); /* Torna o logo branco para o header */
+            filter: brightness(0) invert(1);
         }
 
         .header h2 {
@@ -156,11 +149,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
+            position: relative;
         }
 
-        .avatar {
-            width: 40px;
-            height: 40px;
+        .profile-photo {
+            width: 45px; /* Aumentado */
+            height: 45px; /* Aumentado */
             background-color: white;
             color: var(--rosa-profundo);
             border-radius: 50%;
@@ -168,6 +163,56 @@
             align-items: center;
             justify-content: center;
             font-weight: 600;
+            font-size: 18px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 2px solid white;
+        }
+
+        /* Menu de perfil dropdown */
+        .profile-menu {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            width: 250px;
+            padding: 15px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .profile-menu.show {
+            display: block;
+        }
+
+        .profile-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            color: var(--cinza-escuro);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .profile-menu-item:hover {
+            background-color: var(--rosa-claro);
+        }
+
+        .profile-menu-item.logout {
+            color: #F44336;
+            border-top: 1px solid var(--cinza-claro);
+            margin-top: 10px;
+            padding-top: 15px;
         }
 
         .main-content {
@@ -187,7 +232,7 @@
         }
 
         .greeting-logo {
-            height: 60px;
+            height: 70px; /* Aumentado */
             width: auto;
             background: white;
             padding: 10px;
@@ -564,6 +609,51 @@
             color: #F44336;
         }
 
+        .task-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .concluir-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .photo-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--rosa-claro);
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--rosa-profundo);
+        }
+
+        .photo-input {
+            display: none;
+        }
+
+        .photo-label {
+            background-color: var(--rosa-medio);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
             .indicators-grid {
                 grid-template-columns: 1fr;
@@ -585,7 +675,7 @@
     <div id="loginPage" class="login-container">
         <div class="login-card">
             <div class="logo-section">
-                <!-- LOGO PRINCIPAL -->
+                <!-- LOGO PRINCIPAL (tamanho aumentado) -->
                 <img src="https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png" 
                      alt="Talita Correia Logo" 
                      class="logo">
@@ -614,15 +704,30 @@
             <!-- Header -->
             <header class="header">
                 <div class="header-content">
-                    <!-- LOGO NO HEADER (versão branca) -->
+                    <!-- LOGO NO HEADER (tamanho aumentado) -->
                     <img src="https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png" 
                          alt="Talita Correia" 
                          class="header-logo">
                     <h2 id="pageTitle">Talita Correia</h2>
                 </div>
-                <div class="user-menu">
-                    <span>Talita</span>
-                    <div class="avatar">TC</div>
+                <div class="user-menu" onclick="toggleProfileMenu()">
+                    <div id="profilePhoto" class="profile-photo" style="background-image: url('https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png'); background-size: cover; background-position: center;"></div>
+                    
+                    <!-- Menu dropdown do perfil -->
+                    <div id="profileMenu" class="profile-menu">
+                        <button class="profile-menu-item" onclick="abrirModalFotoPerfil(event)">
+                            <span>📷</span> Alterar foto de perfil
+                        </button>
+                        <button class="profile-menu-item" onclick="editarPerfil(event)">
+                            <span>✏️</span> Editar perfil
+                        </button>
+                        <button class="profile-menu-item" onclick="configuracoes(event)">
+                            <span>⚙️</span> Configurações
+                        </button>
+                        <button class="profile-menu-item logout" onclick="logout(event)">
+                            <span>🚪</span> Sair
+                        </button>
+                    </div>
                 </div>
             </header>
 
@@ -631,7 +736,7 @@
                 <!-- Dashboard -->
                 <div id="dashboardPage" class="page active">
                     <div class="greeting-card">
-                        <!-- LOGO NO CUMPRIMENTO -->
+                        <!-- LOGO NO CUMPRIMENTO (tamanho aumentado) -->
                         <img src="https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png" 
                              alt="Talita Correia" 
                              class="greeting-logo">
@@ -699,9 +804,8 @@
                     </section>
                 </div>
 
-                <!-- Demais páginas (mantidas iguais) -->
+                <!-- Página de Agenda -->
                 <div id="agendaPage" class="page">
-                    <!-- Conteúdo da Agenda (igual ao original) -->
                     <div class="page-header">
                         <h3>📅 Agenda</h3>
                         <button class="add-button" onclick="abrirModalCompromisso()">+</button>
@@ -716,8 +820,8 @@
                     <div id="compromissosList" class="agenda-full-list"></div>
                 </div>
 
+                <!-- Página de Disciplinas -->
                 <div id="disciplinasPage" class="page">
-                    <!-- Conteúdo de Disciplinas -->
                     <div class="page-header">
                         <h3>📚 Disciplinas</h3>
                         <button class="add-button" onclick="abrirModalDisciplina()">+</button>
@@ -725,8 +829,8 @@
                     <div id="disciplinasList"></div>
                 </div>
 
+                <!-- Página de Tarefas -->
                 <div id="tarefasPage" class="page">
-                    <!-- Conteúdo de Tarefas -->
                     <div class="page-header">
                         <h3>✅ Tarefas</h3>
                         <button class="add-button" onclick="abrirModalTarefa()">+</button>
@@ -739,8 +843,8 @@
                     <div id="tarefasList"></div>
                 </div>
 
+                <!-- Página de Finanças -->
                 <div id="financasPage" class="page">
-                    <!-- Conteúdo de Finanças -->
                     <div class="page-header">
                         <h3>💰 Finanças</h3>
                         <div>
@@ -783,15 +887,193 @@
         </div>
     </div>
 
-    <!-- Modais (mantidos iguais ao original) -->
-    <div id="modalCompromisso" class="modal">...</div>
-    <div id="modalDisciplina" class="modal">...</div>
-    <div id="modalTarefa" class="modal">...</div>
-    <div id="modalReceita" class="modal">...</div>
-    <div id="modalDespesa" class="modal">...</div>
+    <!-- Modal para Compromisso -->
+    <div id="modalCompromisso" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Novo Compromisso</h3>
+                <button class="close-btn" onclick="fecharModalCompromisso()">&times;</button>
+            </div>
+            <form id="formCompromisso" onsubmit="salvarCompromisso(event)">
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="compromissoTitulo" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="compromissoCategoria" required>
+                        <option value="Faculdade">Faculdade</option>
+                        <option value="Estágio">Estágio</option>
+                        <option value="Igreja">Igreja</option>
+                        <option value="Estudos">Estudos</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data</label>
+                        <input type="date" id="compromissoData" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Local</label>
+                        <input type="text" id="compromissoLocal">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Hora Início</label>
+                        <input type="time" id="compromissoHoraInicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora Fim</label>
+                        <input type="time" id="compromissoHoraFim" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Disciplina -->
+    <div id="modalDisciplina" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Disciplina</h3>
+                <button class="close-btn" onclick="fecharModalDisciplina()">&times;</button>
+            </div>
+            <form id="formDisciplina" onsubmit="salvarDisciplina(event)">
+                <div class="form-group">
+                    <label>Nome da Disciplina</label>
+                    <input type="text" id="disciplinaNome" required>
+                </div>
+                <div class="form-group">
+                    <label>Professor</label>
+                    <input type="text" id="disciplinaProfessor" required>
+                </div>
+                <div class="form-group">
+                    <label>Semestre</label>
+                    <input type="text" id="disciplinaSemestre" required>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Tarefa -->
+    <div id="modalTarefa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Tarefa</h3>
+                <button class="close-btn" onclick="fecharModalTarefa()">&times;</button>
+            </div>
+            <form id="formTarefa" onsubmit="salvarTarefa(event)">
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="tarefaTitulo" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="tarefaCategoria" required>
+                        <option value="Estudos">Estudos</option>
+                        <option value="Estágio">Estágio</option>
+                        <option value="Igreja">Igreja</option>
+                        <option value="Pessoal">Pessoal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Data Limite</label>
+                    <input type="date" id="tarefaDataLimite" required>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Receita -->
+    <div id="modalReceita" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Receita</h3>
+                <button class="close-btn" onclick="fecharModalReceita()">&times;</button>
+            </div>
+            <form id="formReceita" onsubmit="salvarReceita(event)">
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <input type="text" id="receitaDescricao" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="number" id="receitaValor" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="receitaCategoria" required>
+                        <option value="Salário">Salário</option>
+                        <option value="Estágio">Estágio</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Data</label>
+                    <input type="date" id="receitaData" required>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Despesa -->
+    <div id="modalDespesa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Despesa</h3>
+                <button class="close-btn" onclick="fecharModalDespesa()">&times;</button>
+            </div>
+            <form id="formDespesa" onsubmit="salvarDespesa(event)">
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <input type="text" id="despesaDescricao" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor</label>
+                    <input type="number" id="despesaValor" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="despesaCategoria" required>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Material">Material</option>
+                        <option value="Lazer">Lazer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Data</label>
+                    <input type="date" id="despesaData" required>
+                </div>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Foto de Perfil -->
+    <div id="modalFotoPerfil" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Alterar Foto de Perfil</h3>
+                <button class="close-btn" onclick="fecharModalFotoPerfil()">&times;</button>
+            </div>
+            <div class="photo-upload">
+                <div id="photoPreview" class="photo-preview" style="background-image: url('https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png');"></div>
+                <input type="file" id="photoInput" class="photo-input" accept="image/*" onchange="previewPhoto(event)">
+                <label for="photoInput" class="photo-label">Escolher foto</label>
+                <button class="btn-primary" onclick="salvarFotoPerfil()">Salvar foto</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Banco de Dados (igual ao original)
+        // Banco de Dados
         let db = {
             compromissos: [
                 { id: 1, titulo: 'Aula de Direito Civil', categoria: 'Faculdade', data: new Date().toISOString().split('T')[0], horaInicio: '08:00', horaFim: '10:00', local: 'Sala 101' },
@@ -813,7 +1095,8 @@
             despesas: [
                 { id: 1, valor: 45, categoria: 'Transporte', data: '2026-03-14', descricao: 'Uber para faculdade' },
                 { id: 2, valor: 35, categoria: 'Alimentação', data: '2026-03-13', descricao: 'Almoço' }
-            ]
+            ],
+            profilePhoto: 'https://raw.githubusercontent.com/talitaconcurso2808-coder/Talita-Correia-/12e0cd118b4c57e7a43fc909df9e2251c0796b52/ChatGPT%20Image%2014%20de%20mar.%20de%202026%2C%2018_17_53.png'
         };
 
         // Variáveis de estado
@@ -831,6 +1114,7 @@
             carregarDisciplinas();
             carregarTarefas();
             carregarTransacoes();
+            carregarFotoPerfil();
             
             // Data atual
             const hoje = new Date();
@@ -838,36 +1122,580 @@
             document.getElementById('currentDate').textContent = hoje.toLocaleDateString('pt-BR', options);
         });
 
-        // Funções (manter todas as funções originais aqui)
-        function showPage(pageId) { /* igual ao original */ }
-        function carregarDashboard() { /* igual ao original */ }
-        function carregarCompromissos() { /* igual ao original */ }
-        function filtrarCompromissos(filtro) { /* igual ao original */ }
-        function abrirModalCompromisso() { /* igual ao original */ }
-        function fecharModalCompromisso() { /* igual ao original */ }
-        function salvarCompromisso(e) { /* igual ao original */ }
-        function excluirCompromisso(id) { /* igual ao original */ }
-        function carregarDisciplinas() { /* igual ao original */ }
-        function abrirModalDisciplina() { /* igual ao original */ }
-        function fecharModalDisciplina() { /* igual ao original */ }
-        function salvarDisciplina(e) { /* igual ao original */ }
-        function excluirDisciplina(id) { /* igual ao original */ }
-        function carregarTarefas() { /* igual ao original */ }
-        function filtrarTarefas(filtro) { /* igual ao original */ }
-        function abrirModalTarefa() { /* igual ao original */ }
-        function fecharModalTarefa() { /* igual ao original */ }
-        function salvarTarefa(e) { /* igual ao original */ }
-        function concluirTarefa(id) { /* igual ao original */ }
-        function excluirTarefa(id) { /* igual ao original */ }
-        function carregarTransacoes() { /* igual ao original */ }
-        function mostrarTransacoes(filtro) { /* igual ao original */ }
-        function abrirModalReceita() { /* igual ao original */ }
-        function fecharModalReceita() { /* igual ao original */ }
-        function salvarReceita(e) { /* igual ao original */ }
-        function abrirModalDespesa() { /* igual ao original */ }
-        function fecharModalDespesa() { /* igual ao original */ }
-        function salvarDespesa(e) { /* igual ao original */ }
-        function excluirTransacao(id, tipo) { /* igual ao original */ }
+        // Funções de navegação
+        function showPage(pageId) {
+            // Esconde todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostra a página selecionada
+            document.getElementById(pageId).classList.add('active');
+            
+            // Atualiza menu ativo
+            document.querySelectorAll('.nav-item').forEach((item, index) => {
+                item.classList.remove('active');
+                if ((pageId === 'dashboardPage' && index === 0) ||
+                    (pageId === 'agendaPage' && index === 1) ||
+                    (pageId === 'disciplinasPage' && index === 2) ||
+                    (pageId === 'tarefasPage' && index === 3) ||
+                    (pageId === 'financasPage' && index === 4)) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Atualiza título da página
+            const titles = {
+                dashboardPage: 'Talita Correia',
+                agendaPage: 'Agenda',
+                disciplinasPage: 'Disciplinas',
+                tarefasPage: 'Tarefas',
+                financasPage: 'Finanças'
+            };
+            document.getElementById('pageTitle').textContent = titles[pageId];
+
+            // Recarrega dados conforme a página
+            if (pageId === 'agendaPage') carregarCompromissos();
+            if (pageId === 'disciplinasPage') carregarDisciplinas();
+            if (pageId === 'tarefasPage') carregarTarefas();
+            if (pageId === 'financasPage') carregarTransacoes();
+        }
+
+        // Funções de Perfil
+        function toggleProfileMenu() {
+            const menu = document.getElementById('profileMenu');
+            menu.classList.toggle('show');
+        }
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('profileMenu');
+            const userMenu = document.querySelector('.user-menu');
+            
+            if (!userMenu.contains(event.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        function abrirModalFotoPerfil(event) {
+            event.stopPropagation();
+            document.getElementById('profileMenu').classList.remove('show');
+            document.getElementById('modalFotoPerfil').classList.add('active');
+            // Atualiza preview com a foto atual
+            document.getElementById('photoPreview').style.backgroundImage = `url('${db.profilePhoto}')`;
+        }
+
+        function fecharModalFotoPerfil() {
+            document.getElementById('modalFotoPerfil').classList.remove('active');
+        }
+
+        function previewPhoto(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('photoPreview').style.backgroundImage = `url('${e.target.result}')`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function salvarFotoPerfil() {
+            const fileInput = document.getElementById('photoInput');
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    db.profilePhoto = e.target.result;
+                    carregarFotoPerfil();
+                    fecharModalFotoPerfil();
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function carregarFotoPerfil() {
+            const profilePhoto = document.getElementById('profilePhoto');
+            profilePhoto.style.backgroundImage = `url('${db.profilePhoto}')`;
+        }
+
+        function editarPerfil(event) {
+            event.stopPropagation();
+            document.getElementById('profileMenu').classList.remove('show');
+            alert('Funcionalidade de editar perfil em desenvolvimento!');
+        }
+
+        function configuracoes(event) {
+            event.stopPropagation();
+            document.getElementById('profileMenu').classList.remove('show');
+            alert('Funcionalidade de configurações em desenvolvimento!');
+        }
+
+        function logout(event) {
+            event.stopPropagation();
+            document.getElementById('profileMenu').classList.remove('show');
+            document.getElementById('appMain').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('username').value = 'Talita';
+            document.getElementById('password').value = '123456';
+        }
+
+        // Funções do Dashboard
+        function carregarDashboard() {
+            const hoje = new Date().toISOString().split('T')[0];
+            
+            // Agenda de hoje
+            const compromissosHoje = db.compromissos.filter(c => c.data === hoje);
+            const todayAgenda = document.getElementById('todayAgenda');
+            
+            if (compromissosHoje.length === 0) {
+                todayAgenda.innerHTML = '<div class="empty-message">Nenhum compromisso hoje</div>';
+            } else {
+                todayAgenda.innerHTML = compromissosHoje.map(c => `
+                    <div class="agenda-item">
+                        <span class="agenda-time">${c.horaInicio}</span>
+                        <span class="agenda-title">${c.titulo}</span>
+                        <span class="agenda-category">${c.categoria}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Tarefas pendentes
+            const tarefasPendentes = db.tarefas.filter(t => t.status === 'pendente');
+            const pendingTasks = document.getElementById('pendingTasks');
+            
+            if (tarefasPendentes.length === 0) {
+                pendingTasks.innerHTML = '<div class="empty-message">Nenhuma tarefa pendente</div>';
+            } else {
+                pendingTasks.innerHTML = tarefasPendentes.slice(0, 3).map(t => `
+                    <div class="task-item">
+                        <span class="agenda-title">${t.titulo}</span>
+                        <span class="agenda-category">${t.categoria}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Resumo financeiro
+            const totalReceitas = db.receitas.reduce((sum, r) => sum + r.valor, 0);
+            const totalDespesas = db.despesas.reduce((sum, d) => sum + d.valor, 0);
+            document.getElementById('currentBalance').textContent = `R$ ${(totalReceitas - totalDespesas).toFixed(2)}`;
+            document.getElementById('monthlyIncome').textContent = `R$ ${totalReceitas.toFixed(2)}`;
+            document.getElementById('monthlyExpenses').textContent = `R$ ${totalDespesas.toFixed(2)}`;
+
+            // Indicadores
+            const tarefasConcluidas = db.tarefas.filter(t => t.status === 'concluida').length;
+            document.getElementById('tasksCompleted').textContent = tarefasConcluidas;
+            
+            const compromissosSemana = db.compromissos.length;
+            document.getElementById('weekCommitments').textContent = compromissosSemana;
+            
+            const gastosSemana = db.despesas.reduce((sum, d) => sum + d.valor, 0);
+            document.getElementById('weekExpenses').textContent = `R$ ${gastosSemana.toFixed(2)}`;
+        }
+
+        // Funções de Compromissos
+        function carregarCompromissos() {
+            const lista = document.getElementById('compromissosList');
+            let compromissosFiltrados = db.compromissos;
+            
+            if (filtroCompromissos !== 'todos') {
+                compromissosFiltrados = compromissosFiltrados.filter(c => c.categoria === filtroCompromissos);
+            }
+
+            // Agrupar por data
+            const compromissosPorData = {};
+            compromissosFiltrados.forEach(c => {
+                if (!compromissosPorData[c.data]) {
+                    compromissosPorData[c.data] = [];
+                }
+                compromissosPorData[c.data].push(c);
+            });
+
+            // Ordenar datas
+            const datasOrdenadas = Object.keys(compromissosPorData).sort();
+
+            if (datasOrdenadas.length === 0) {
+                lista.innerHTML = '<div class="empty-message">Nenhum compromisso encontrado</div>';
+                return;
+            }
+
+            let html = '';
+            datasOrdenadas.forEach(data => {
+                const dataObj = new Date(data + 'T12:00:00');
+                const dataFormatada = dataObj.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                
+                html += `<div class="date-header">${dataFormatada}</div>`;
+                
+                compromissosPorData[data].forEach(c => {
+                    html += `
+                        <div class="agenda-item">
+                            <span class="agenda-time">${c.horaInicio}</span>
+                            <span class="agenda-title">${c.titulo} - ${c.local || 'Sem local'}</span>
+                            <span class="agenda-category">${c.categoria}</span>
+                            <button class="delete-btn" onclick="excluirCompromisso(${c.id})">🗑️</button>
+                        </div>
+                    `;
+                });
+            });
+
+            lista.innerHTML = html;
+        }
+
+        function filtrarCompromissos(filtro) {
+            filtroCompromissos = filtro;
+            
+            // Atualiza botões ativos
+            document.querySelectorAll('#agendaPage .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            carregarCompromissos();
+        }
+
+        function abrirModalCompromisso() {
+            const hoje = new Date().toISOString().split('T')[0];
+            document.getElementById('compromissoData').value = hoje;
+            document.getElementById('modalCompromisso').classList.add('active');
+        }
+
+        function fecharModalCompromisso() {
+            document.getElementById('modalCompromisso').classList.remove('active');
+            document.getElementById('formCompromisso').reset();
+        }
+
+        function salvarCompromisso(e) {
+            e.preventDefault();
+            
+            const novoCompromisso = {
+                id: db.compromissos.length + 1,
+                titulo: document.getElementById('compromissoTitulo').value,
+                categoria: document.getElementById('compromissoCategoria').value,
+                data: document.getElementById('compromissoData').value,
+                horaInicio: document.getElementById('compromissoHoraInicio').value,
+                horaFim: document.getElementById('compromissoHoraFim').value,
+                local: document.getElementById('compromissoLocal').value
+            };
+
+            db.compromissos.push(novoCompromisso);
+            fecharModalCompromisso();
+            carregarCompromissos();
+            carregarDashboard();
+        }
+
+        function excluirCompromisso(id) {
+            if (confirm('Deseja realmente excluir este compromisso?')) {
+                db.compromissos = db.compromissos.filter(c => c.id !== id);
+                carregarCompromissos();
+                carregarDashboard();
+            }
+        }
+
+        // Funções de Disciplinas
+        function carregarDisciplinas() {
+            const lista = document.getElementById('disciplinasList');
+            
+            if (db.disciplinas.length === 0) {
+                lista.innerHTML = '<div class="empty-message">Nenhuma disciplina cadastrada</div>';
+                return;
+            }
+
+            lista.innerHTML = db.disciplinas.map(d => `
+                <div class="disciplina-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <div class="disciplina-nome">${d.nome}</div>
+                            <div class="disciplina-info">Professor: ${d.professor}</div>
+                            <div class="disciplina-info">Semestre: ${d.semestre}</div>
+                        </div>
+                        <button class="delete-btn" onclick="excluirDisciplina(${d.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function abrirModalDisciplina() {
+            document.getElementById('modalDisciplina').classList.add('active');
+        }
+
+        function fecharModalDisciplina() {
+            document.getElementById('modalDisciplina').classList.remove('active');
+            document.getElementById('formDisciplina').reset();
+        }
+
+        function salvarDisciplina(e) {
+            e.preventDefault();
+            
+            const novaDisciplina = {
+                id: db.disciplinas.length + 1,
+                nome: document.getElementById('disciplinaNome').value,
+                professor: document.getElementById('disciplinaProfessor').value,
+                semestre: document.getElementById('disciplinaSemestre').value
+            };
+
+            db.disciplinas.push(novaDisciplina);
+            fecharModalDisciplina();
+            carregarDisciplinas();
+        }
+
+        function excluirDisciplina(id) {
+            if (confirm('Deseja realmente excluir esta disciplina?')) {
+                db.disciplinas = db.disciplinas.filter(d => d.id !== id);
+                carregarDisciplinas();
+            }
+        }
+
+        // Funções de Tarefas
+        function carregarTarefas() {
+            const lista = document.getElementById('tarefasList');
+            let tarefasFiltradas = db.tarefas;
+            
+            if (filtroTarefas === 'pendentes') {
+                tarefasFiltradas = tarefasFiltradas.filter(t => t.status === 'pendente');
+            } else if (filtroTarefas === 'concluidas') {
+                tarefasFiltradas = tarefasFiltradas.filter(t => t.status === 'concluida');
+            }
+
+            // Agrupar por data
+            const tarefasPorData = {};
+            tarefasFiltradas.forEach(t => {
+                if (!tarefasPorData[t.dataLimite]) {
+                    tarefasPorData[t.dataLimite] = [];
+                }
+                tarefasPorData[t.dataLimite].push(t);
+            });
+
+            // Ordenar datas
+            const datasOrdenadas = Object.keys(tarefasPorData).sort();
+
+            if (datasOrdenadas.length === 0) {
+                lista.innerHTML = '<div class="empty-message">Nenhuma tarefa encontrada</div>';
+                return;
+            }
+
+            let html = '';
+            datasOrdenadas.forEach(data => {
+                const dataObj = new Date(data + 'T12:00:00');
+                const dataFormatada = dataObj.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                
+                html += `<div class="date-header">${dataFormatada}</div>`;
+                
+                tarefasPorData[data].forEach(t => {
+                    html += `
+                        <div class="task-item">
+                            <span class="agenda-title">${t.titulo}</span>
+                            <span class="agenda-category">${t.categoria}</span>
+                            <div class="task-actions">
+                                ${t.status === 'pendente' ? 
+                                    `<button class="concluir-btn" onclick="concluirTarefa(${t.id})">✓</button>` : 
+                                    ''}
+                                <button class="delete-btn" onclick="excluirTarefa(${t.id})">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+
+            lista.innerHTML = html;
+        }
+
+        function filtrarTarefas(filtro) {
+            filtroTarefas = filtro;
+            
+            // Atualiza botões ativos
+            document.querySelectorAll('#tarefasPage .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            carregarTarefas();
+        }
+
+        function abrirModalTarefa() {
+            const hoje = new Date().toISOString().split('T')[0];
+            document.getElementById('tarefaDataLimite').value = hoje;
+            document.getElementById('modalTarefa').classList.add('active');
+        }
+
+        function fecharModalTarefa() {
+            document.getElementById('modalTarefa').classList.remove('active');
+            document.getElementById('formTarefa').reset();
+        }
+
+        function salvarTarefa(e) {
+            e.preventDefault();
+            
+            const novaTarefa = {
+                id: db.tarefas.length + 1,
+                titulo: document.getElementById('tarefaTitulo').value,
+                categoria: document.getElementById('tarefaCategoria').value,
+                dataLimite: document.getElementById('tarefaDataLimite').value,
+                status: 'pendente'
+            };
+
+            db.tarefas.push(novaTarefa);
+            fecharModalTarefa();
+            carregarTarefas();
+            carregarDashboard();
+        }
+
+        function concluirTarefa(id) {
+            const tarefa = db.tarefas.find(t => t.id === id);
+            if (tarefa) {
+                tarefa.status = 'concluida';
+                carregarTarefas();
+                carregarDashboard();
+            }
+        }
+
+        function excluirTarefa(id) {
+            if (confirm('Deseja realmente excluir esta tarefa?')) {
+                db.tarefas = db.tarefas.filter(t => t.id !== id);
+                carregarTarefas();
+                carregarDashboard();
+            }
+        }
+
+        // Funções de Finanças
+        function carregarTransacoes() {
+            const lista = document.getElementById('transacoesList');
+            
+            // Combinar receitas e despesas
+            let transacoes = [
+                ...db.receitas.map(r => ({ ...r, tipo: 'receita' })),
+                ...db.despesas.map(d => ({ ...d, tipo: 'despesa' }))
+            ];
+
+            // Aplicar filtro
+            if (filtroTransacoes === 'receitas') {
+                transacoes = transacoes.filter(t => t.tipo === 'receita');
+            } else if (filtroTransacoes === 'despesas') {
+                transacoes = transacoes.filter(t => t.tipo === 'despesa');
+            }
+
+            // Ordenar por data (mais recente primeiro)
+            transacoes.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+            if (transacoes.length === 0) {
+                lista.innerHTML = '<div class="empty-message">Nenhuma transação encontrada</div>';
+                return;
+            }
+
+            // Agrupar por data
+            const transacoesPorData = {};
+            transacoes.forEach(t => {
+                if (!transacoesPorData[t.data]) {
+                    transacoesPorData[t.data] = [];
+                }
+                transacoesPorData[t.data].push(t);
+            });
+
+            let html = '';
+            Object.keys(transacoesPorData).sort().reverse().forEach(data => {
+                const dataObj = new Date(data + 'T12:00:00');
+                const dataFormatada = dataObj.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                
+                html += `<div class="date-header">${dataFormatada}</div>`;
+                
+                transacoesPorData[data].forEach(t => {
+                    html += `
+                        <div class="transaction-item">
+                            <div class="transaction-desc">
+                                <strong>${t.descricao}</strong><br>
+                                <small>${t.categoria}</small>
+                            </div>
+                            <div>
+                                <span class="transaction-value ${t.tipo === 'receita' ? 'positive' : 'negative'}">
+                                    ${t.tipo === 'receita' ? '+' : '-'} R$ ${t.valor.toFixed(2)}
+                                </span>
+                                <button class="delete-btn" onclick="excluirTransacao(${t.id}, '${t.tipo}')">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+
+            lista.innerHTML = html;
+
+            // Atualizar totais no dashboard
+            carregarDashboard();
+        }
+
+        function mostrarTransacoes(filtro) {
+            filtroTransacoes = filtro;
+            
+            // Atualiza botões ativos
+            document.querySelectorAll('#financasPage .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            carregarTransacoes();
+        }
+
+        function abrirModalReceita() {
+            const hoje = new Date().toISOString().split('T')[0];
+            document.getElementById('receitaData').value = hoje;
+            document.getElementById('modalReceita').classList.add('active');
+        }
+
+        function fecharModalReceita() {
+            document.getElementById('modalReceita').classList.remove('active');
+            document.getElementById('formReceita').reset();
+        }
+
+        function salvarReceita(e) {
+            e.preventDefault();
+            
+            const novaReceita = {
+                id: db.receitas.length + 1,
+                descricao: document.getElementById('receitaDescricao').value,
+                valor: parseFloat(document.getElementById('receitaValor').value),
+                categoria: document.getElementById('receitaCategoria').value,
+                data: document.getElementById('receitaData').value
+            };
+
+            db.receitas.push(novaReceita);
+            fecharModalReceita();
+            carregarTransacoes();
+        }
+
+        function abrirModalDespesa() {
+            const hoje = new Date().toISOString().split('T')[0];
+            document.getElementById('despesaData').value = hoje;
+            document.getElementById('modalDespesa').classList.add('active');
+        }
+
+        function fecharModalDespesa() {
+            document.getElementById('modalDespesa').classList.remove('active');
+            document.getElementById('formDespesa').reset();
+        }
+
+        function salvarDespesa(e) {
+            e.preventDefault();
+            
+            const novaDespesa = {
+                id: db.despesas.length + 1,
+                descricao: document.getElementById('despesaDescricao').value,
+                valor: parseFloat(document.getElementById('despesaValor').value),
+                categoria: document.getElementById('despesaCategoria').value,
+                data: document.getElementById('despesaData').value
+            };
+
+            db.despesas.push(novaDespesa);
+            fecharModalDespesa();
+            carregarTransacoes();
+        }
+
+        function excluirTransacao(id, tipo) {
+            if (confirm('Deseja realmente excluir esta transação?')) {
+                if (tipo === 'receita') {
+                    db.receitas = db.receitas.filter(r => r.id !== id);
+                } else {
+                    db.despesas = db.despesas.filter(d => d.id !== id);
+                }
+                carregarTransacoes();
+            }
+        }
     </script>
 </body>
 </html>
